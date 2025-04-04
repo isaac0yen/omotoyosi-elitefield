@@ -1,0 +1,18 @@
+.text-white {
+  color: white !important;
+}
+.custom-text {
+  color: rgb(67, 142, 198) !important;
+}
+
+.custom-text-orange {
+  color: rgb(231, 120, 46) !important;
+}
+.custom-button {
+  background-color: rgb(231, 120, 46) !important;
+}
+
+.logo-dimension {
+  width: 200px !important;
+  height: 50px !important;
+}
