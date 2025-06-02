@@ -19,8 +19,8 @@
                     <ul id="navigation">
                       <li><a href="index.php" class="<?php echo $currentPage == 'home' ? 'active' : ''; ?>">Home</a></li>
                       <li><a href="about.php" class="<?php echo $currentPage == 'about' ? 'active' : ''; ?>">About</a></li>
-                      <li><a href="program.php" class="<?php echo $currentPage == 'program' ? 'active' : ''; ?>">Latest Causes</a></li>
-                      <li><a href="events.php" class="<?php echo $currentPage == 'events' ? 'active' : ''; ?>">Social Events</a></li>
+                      <!-- <li><a href="program.php" class="<?php echo $currentPage == 'program' ? 'active' : ''; ?>">Latest Causes</a></li> -->
+                      <!-- <li><a href="events.php" class="<?php echo $currentPage == 'events' ? 'active' : ''; ?>">Social Events</a></li> -->
                       <li>
                         <a href="blog.php" class="<?php echo $currentPage == 'blog' || $currentPage == 'blog_details' ? 'active' : ''; ?>">Blog</a>
                         <ul class="submenu">

@@ -72,7 +72,7 @@ require_once 'includes/config.php';
               <span class="ti-shield"><i class="ri-graduation-cap-line"></i></span>
             </div>
             <div class="cat-cap">
-              <h5><a href="program.php">Basic Education</a></h5>
+              <h5>Basic Education</h5>
               <p>
                 We are essentially committed to giving underprivileged
                 children access to basic literacy and numeracy skills to
@@ -88,7 +88,7 @@ require_once 'includes/config.php';
               <span class="flaticon-think"><i class="ri-bard-fill"></i></span>
             </div>
             <div class="cat-cap">
-              <h5><a href="program.php">Exposed Learning</a></h5>
+              <h5>Exposed Learning</h5>
               <p>
                 In order to change the mindset and perspectives of our
                 children towards education and with the way they view life
@@ -106,7 +106,7 @@ require_once 'includes/config.php';
               <span class="flaticon-gear"><i class="ri-service-line"></i></span>
             </div>
             <div class="cat-cap">
-              <h5><a href="program.php">Strong Support</a></h5>
+              <h5>Strong Support</h5>
               <p>
                 Over the years we've had passionate people who have
                 selflessly put in their time and resources in making sure
