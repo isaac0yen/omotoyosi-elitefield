@@ -35,7 +35,7 @@ require_once 'includes/config.php';
         <div class="col-lg-6 col-md-12">
           <!-- about-img -->
           <div class="about-img">
-            <img src="./resources/children-foundation.jpg" alt="Foundation Children" class="img-fluid rounded shadow-lg">
+            <img src="./resources/world.jpg" alt="Foundation Children" class="img-fluid rounded shadow-lg">
           </div>
         </div>
         <div class="col-lg-6 col-md-12">
@@ -240,115 +240,45 @@ require_once 'includes/config.php';
         </div>
       </div>
       <div class="row">
+        <?php
+        // Use team members data from config
+        if (!isset($teamMembers)) {
+          include_once 'includes/config.php';
+        }
+        
+        // Display all team members
+        foreach ($teamMembers as $index => $member) :
+          // Create a new row every 4 members
+          if ($index > 0 && $index % 4 === 0) :
+            echo '</div><div class="row">';
+          endif;
+        ?>
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="single-team mb-30">
             <div class="team-img">
-              <img src="./resources/Executive Director.jpeg" alt="Executive Director" />
+              <img src="<?php echo $member['image']; ?>" alt="<?php echo $member['alt']; ?>" />
               <!-- Team Social -->
+              <?php if (!empty($member['social_media'])) : ?>
               <ul class="team-social">
+                <?php foreach ($member['social_media'] as $social) : ?>
                 <li>
-                  <a href="https://www.instagram.com/omotoyosi_oladeji" target="_blank"><i class="fab fa-instagram"></i></a>
+                  <a href="<?php echo $social['url']; ?>" target="_blank"><i class="<?php echo $social['icon']; ?>"></i></a>
                 </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/oladeji-omotoyosi" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </li>
-                <li>
-                  <a href="https://x.com/OmotoyosiOlade1" target="_blank"><i class="ri-twitter-x-fill"></i></a>
-                </li>
+                <?php endforeach; ?>
               </ul>
+              <?php endif; ?>
             </div>
             <div class="team-caption">
-              <h3>Oladeji Omotoyosi</h3>
-              <p>Executive Director</p>
+              <h3><?php echo $member['name']; ?></h3>
+              <p><?php echo $member['position']; ?></p>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="single-team mb-30">
-            <div class="team-img">
-              <img src="./resources/Head of operations.jpeg" alt="Head of Operations" />
-              <!-- Team Social -->
-              <ul class="team-social">
-                <li>
-                  <a href="https://www.instagram.com/samuelhabilah" target="_blank"><i class="fab fa-instagram"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/habila-d-908060111" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </li>
-              </ul>
-            </div>
-            <div class="team-caption">
-              <h3>Habila Samuel</h3>
-              <p>Head of Operations</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="single-team mb-30">
-            <div class="team-img">
-              <img src="./resources/HR.jpeg" alt="Human Resource" />
-              <!-- Team Social -->
-              <ul class="team-social">
-                <li>
-                  <a href="https://www.instagram.com/oluwaseyi_ale" target="_blank"><i class="fab fa-instagram"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/oluwaseyi-ale-786080123" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </li>
-              </ul>
-            </div>
-            <div class="team-caption">
-              <h3>Ale Oluwaseyi</h3>
-              <p>Human Resource</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="single-team mb-30">
-            <div class="team-img">
-              <img src="./resources/Head of Communications.jpeg" alt="Head of Communications" />
-              <!-- Team Social -->
-              <ul class="team-social">
-                <li>
-                  <a href="https://www.instagram.com/_bussiegold" target="_blank"><i class="fab fa-instagram"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/tiyinloluwa-ajala" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </li>
-              </ul>
-            </div>
-            <div class="team-caption">
-              <h3>Tiyinloluwa Busola Ajala</h3>
-              <p>Head of Communications</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="single-team mb-30">
-            <div class="team-img">
-              <img src="./resources/Volunteer.jpeg" alt="Volunteer" />
-              <!-- Team Social -->
-              <ul class="team-social">
-                <li>
-                  <a href="https://www.instagram.com/michaeloluwatosin681" target="_blank"><i class="fab fa-instagram"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/michael-oluwatosin-040748288" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </li>
-              </ul>
-            </div>
-            <div class="team-caption">
-              <h3>Adeyomoye Michael Oluwatosin</h3>
-              <p>Volunteer</p>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </div>
   <!-- Team Area End -->
-  
-  <!-- Want To work -->
   <section class="wantToWork-area">
     <div class="container">
       <div class="wants-wrapper w-padding2 section-bg" data-background="resources/world.jpg">

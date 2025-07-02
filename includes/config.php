@@ -2,9 +2,9 @@
 // Site configuration
 $siteConfig = [
     'site_name' => 'Omotoyosi Elitefield Educational Foundation',
-    'site_url' => 'https://elitefield.org',
+    'site_url' => 'https://omotoyosifoundation.com.ng',
     'site_description' => 'Providing underprivileged children with access to quality education',
-    'contact_email' => 'info@elitefield.org',
+    'contact_email' => 'info@omotoyosifoundation.com.ng',
     'contact_phone' => '+234 808 117 3996',
     'contact_address' => '23 Alabata Road, Abeokuta, Ogun State, Nigeria',
     'social_media' => [
@@ -57,4 +57,80 @@ function baseUrl($path = '') {
     $basePath = '';
     return $basePath . $path;
 }
+
+// Team members data
+$teamMembers = [
+    [
+        'name' => 'Oladeji Omotoyosi',
+        'position' => 'Executive Director',
+        'image' => './resources/Executive Director.jpeg',
+        'alt' => 'Executive Director',
+        'social_media' => [
+            ['platform' => 'instagram', 'url' => 'https://www.instagram.com/omotoyosi_oladeji', 'icon' => 'fab fa-instagram'],
+            ['platform' => 'linkedin', 'url' => 'https://www.linkedin.com/in/oladeji-omotoyosi', 'icon' => 'fab fa-linkedin'],
+            ['platform' => 'twitter', 'url' => 'https://x.com/OmotoyosiOlade1', 'icon' => 'ri-twitter-x-fill']
+        ]
+    ],
+    [
+        'name' => 'Habila Samuel',
+        'position' => 'Head of Operations',
+        'image' => './resources/Head of operations.jpeg',
+        'alt' => 'Head of Operations',
+        'social_media' => [
+            ['platform' => 'instagram', 'url' => 'https://www.instagram.com/samuelhabilah', 'icon' => 'fab fa-instagram'],
+            ['platform' => 'linkedin', 'url' => 'https://www.linkedin.com/in/habila-d-908060111', 'icon' => 'fab fa-linkedin']
+        ]
+    ],
+    [
+        'name' => 'Ale Oluwaseyi',
+        'position' => 'Human Resource',
+        'image' => './resources/HR.jpeg',
+        'alt' => 'Human Resource',
+        'social_media' => [
+            ['platform' => 'instagram', 'url' => 'https://www.instagram.com/oluwaseyi_ale', 'icon' => 'fab fa-instagram'],
+            ['platform' => 'linkedin', 'url' => 'https://www.linkedin.com/in/oluwaseyi-ale-786080123', 'icon' => 'fab fa-linkedin']
+        ]
+    ],
+    [
+        'name' => 'Tiyinloluwa Busola Ajala',
+        'position' => 'Head of Communications',
+        'image' => './resources/Head of Communications.jpeg',
+        'alt' => 'Head of Communications',
+        'social_media' => [
+            ['platform' => 'instagram', 'url' => 'https://www.instagram.com/_bussiegold', 'icon' => 'fab fa-instagram'],
+            ['platform' => 'linkedin', 'url' => 'https://www.linkedin.com/in/tiyinloluwa-ajala', 'icon' => 'fab fa-linkedin']
+        ]
+    ],
+    [
+        'name' => 'Adeyomoye Michael Oluwatosin',
+        'position' => 'Programmes Officer',
+        'image' => './resources/Programmes-Officer.jpeg',
+        'alt' => 'Programmes Officer',
+        'social_media' => [
+            ['platform' => 'instagram', 'url' => 'https://www.instagram.com/michaeloluwatosin681', 'icon' => 'fab fa-instagram'],
+            ['platform' => 'linkedin', 'url' => 'https://www.linkedin.com/in/michael-oluwatosin-040748288', 'icon' => 'fab fa-linkedin']
+        ]
+    ],
+    [
+        'name' => 'Dosumu Fisayo Florish',
+        'position' => 'Communications Associate',
+        'image' => './resources/Communications-Associate.jpg',
+        'alt' => 'Communications Associate',
+        'social_media' => []
+    ],
+    [
+        'name' => 'Ogan Desire',
+        'position' => 'Programmes Associate',
+        'image' => './resources/Programmes-Associate.jpg',
+        'alt' => 'Programmes Associate',
+        'social_media' => []
+    ],
+    [
+        'name' => 'AFOLABI GOD\'SGLORY',
+        'position' => 'Volunteers Coordinator',
+        'image' => './resources/Volunteers-Coordinator.jpg',
+        'alt' => 'Volunteers Coordinator',
+        'social_media' => []
+    ]
+];
 ?>

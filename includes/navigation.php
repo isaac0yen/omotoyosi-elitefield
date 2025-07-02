@@ -23,11 +23,6 @@
                       <!-- <li><a href="events.php" class="<?php echo $currentPage == 'events' ? 'active' : ''; ?>">Social Events</a></li> -->
                       <li>
                         <a href="blog.php" class="<?php echo $currentPage == 'blog' || $currentPage == 'blog_details' ? 'active' : ''; ?>">Blog</a>
-                        <ul class="submenu">
-                          <li><a href="blog.php">Blog</a></li>
-                          <li><a href="blog_details.php">Blog Details</a></li>
-                          <li><a href="elements.php">Element</a></li>
-                        </ul>
                       </li>
                       <li><a href="contact.php" class="<?php echo $currentPage == 'contact' ? 'active' : ''; ?>">Contact</a></li>
                     </ul>
