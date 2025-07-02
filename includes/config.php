@@ -83,9 +83,9 @@ $teamMembers = [
     ],
     [
         'name' => 'Ale Oluwaseyi',
-        'position' => 'Human Resource',
+        'position' => '',
         'image' => './resources/HR.jpeg',
-        'alt' => 'Human Resource',
+        'alt' => '',
         'social_media' => [
             ['platform' => 'instagram', 'url' => 'https://www.instagram.com/oluwaseyi_ale', 'icon' => 'fab fa-instagram'],
             ['platform' => 'linkedin', 'url' => 'https://www.linkedin.com/in/oluwaseyi-ale-786080123', 'icon' => 'fab fa-linkedin']
@@ -93,9 +93,9 @@ $teamMembers = [
     ],
     [
         'name' => 'Tiyinloluwa Busola Ajala',
-        'position' => 'Head of Communications',
+        'position' => '',
         'image' => './resources/Head of Communications.jpeg',
-        'alt' => 'Head of Communications',
+        'alt' => '',
         'social_media' => [
             ['platform' => 'instagram', 'url' => 'https://www.instagram.com/_bussiegold', 'icon' => 'fab fa-instagram'],
             ['platform' => 'linkedin', 'url' => 'https://www.linkedin.com/in/tiyinloluwa-ajala', 'icon' => 'fab fa-linkedin']

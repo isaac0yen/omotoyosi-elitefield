@@ -64,11 +64,11 @@ $currentPosts = array_slice($posts, $offset, $postsPerPage);
 // Get categories for sidebar with counts
 $categories = [];
 foreach ($allPosts as $post) {
-    $category = $post['category'];
-    if (!isset($categories[$category])) {
-        $categories[$category] = 0;
+    $cat = $post['category'];
+    if (!isset($categories[$cat])) {
+        $categories[$cat] = 0;
     }
-    $categories[$category]++;
+    $categories[$cat]++;
 }
 
 // Get all unique tags
@@ -76,7 +76,7 @@ $allTags = [];
 foreach ($allPosts as $post) {
     if (isset($post['tags']) && is_array($post['tags'])) {
         foreach ($post['tags'] as $postTag) {
-            if (!in_array($postTag, $allTags)) {
+            if (!in_array($postTag, $allTags, true)) {
                 $allTags[] = $postTag;
             }
         }
@@ -91,27 +91,28 @@ function buildPaginationUrl($pageNum) {
     global $category, $tag, $search;
     $params = [];
     
+    // Only add page if it's not the first page, for cleaner URLs
     if ($pageNum > 1) {
-        $params[] = "page=" . $pageNum;
+        $params['page'] = $pageNum;
     }
     
     if (!empty($category)) {
-        $params[] = "category=" . urlencode($category);
+        $params['category'] = $category;
     }
     
     if (!empty($tag)) {
-        $params[] = "tag=" . urlencode($tag);
+        $params['tag'] = $tag;
     }
     
     if (!empty($search)) {
-        $params[] = "search=" . urlencode($search);
+        $params['search'] = $search;
     }
     
     if (empty($params)) {
         return "blog.php";
     }
     
-    return "blog.php?" . implode("&", $params);
+    return "blog.php?" . http_build_query($params);
 }
 ?>
 
@@ -119,117 +120,114 @@ function buildPaginationUrl($pageNum) {
 <?php include 'includes/navigation.php'; ?>
 
 <main>
- 
-  <!--? Blog Area Start -->
-  <section class="blog_area section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mb-5 mb-lg-0">
+  <section class="bg-gray-50 py-16 sm:py-24">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap lg:flex-nowrap -mx-4">
+        
+        <div class="w-full lg:w-2/3 px-4">
           <?php if (!empty($category) || !empty($tag) || !empty($search)): ?>
-            <div class="filter-notice p-3 bg-light rounded mb-4">
-              <p class="mb-0">
+            <div class="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-lg flex justify-between items-center">
+              <p class="text-gray-700">
                 <?php if (!empty($category)): ?>
-                  Showing posts in category: <strong><?php echo $category; ?></strong>
+                  Showing posts in category: <strong class="font-semibold text-gray-900"><?php echo htmlspecialchars($category); ?></strong>
                 <?php elseif (!empty($tag)): ?>
-                  Showing posts with tag: <strong><?php echo $tag; ?></strong>
+                  Showing posts with tag: <strong class="font-semibold text-gray-900"><?php echo htmlspecialchars($tag); ?></strong>
                 <?php elseif (!empty($search)): ?>
-                  Search results for: <strong><?php echo $search; ?></strong>
+                  Search results for: <strong class="font-semibold text-gray-900"><?php echo htmlspecialchars($search); ?></strong>
                 <?php endif; ?>
-                <a href="blog.php" class="ml-2 text-custom-blue"><i class="fas fa-times-circle"></i> Clear filters</a>
               </p>
+              <a href="blog.php" class="text-sm text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                <i class="fas fa-times-circle mr-1"></i> Clear
+              </a>
             </div>
           <?php endif; ?>
           
-          <div class="blog_left_sidebar">
+          <div>
             <?php if (empty($currentPosts)): ?>
-              <div class="alert alert-info p-4 rounded">
-                <h4 class="text-xl font-bold mb-2">No posts found</h4>
-                <p>No blog posts match your search criteria. Please try a different search or browse all posts.</p>
-                <a href="blog.php" class="btn mt-3">View All Posts</a>
+              <div class="text-center p-12 bg-white rounded-lg shadow-md">
+                <h4 class="text-2xl font-bold text-gray-800 mb-2">No Posts Found</h4>
+                <p class="text-gray-600">No blog posts match your criteria. Please try again or browse all posts.</p>
+                <a href="blog.php" class="mt-6 inline-block bg-orange-500 text-white font-bold py-2 px-5 rounded-lg hover:bg-orange-600 transition-colors">
+                  View All Posts
+                </a>
               </div>
             <?php else: ?>
-              <div class="row">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <?php foreach ($currentPosts as $post): 
-                  $dateParts = explode(' ', $post['date']);
-                  $day = $dateParts[0] ?? '';
-                  $month = isset($dateParts[1]) ? substr($dateParts[1], 0, 3) : '';
+                  // Safely parse date
+                  $dateObj = DateTime::createFromFormat('d F Y', $post['date']);
+                  $day = $dateObj ? $dateObj->format('d') : '';
+                  $month = $dateObj ? $dateObj->format('M') : '';
                 ?>
-                <div class="col-lg-6 col-md-6">
-                  <article class="blog_item bg-white rounded-lg shadow-sm overflow-hidden mb-5">
-                    <div class="blog_item_img relative">
-                      <img class="card-img-top w-full h-64 object-cover" src="<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>">
-                      <a href="blog_details.php?slug=<?php echo $post['slug']; ?>" class="blog_item_date bg-custom-orange text-center">
-                        <h3 class="text-white"><?php echo $day; ?></h3>
-                        <p class="text-white"><?php echo $month; ?></p>
-                      </a>
+                <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full group">
+                  <div class="relative">
+                    <img class="w-full h-56 object-cover" src="<?php echo htmlspecialchars($post['image']); ?>" alt="<?php echo htmlspecialchars($post['title']); ?>">
+                    <a href="blog_details.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="absolute bottom-0 left-4 bg-orange-500 text-white text-center p-2 rounded-t-lg transition-transform duration-300 group-hover:-translate-y-2">
+                      <h3 class="font-bold text-2xl"><?php echo $day; ?></h3>
+                      <p class="text-sm uppercase"><?php echo $month; ?></p>
+                    </a>
+                  </div>
+                  <div class="p-6 flex-grow flex flex-col">
+                    <a class="block mb-2" href="blog_details.php?slug=<?php echo htmlspecialchars($post['slug']); ?>">
+                      <h2 class="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors"><?php echo htmlspecialchars($post['title']); ?></h2>
+                    </a>
+                    <p class="text-gray-600 mb-4 flex-grow"><?php echo htmlspecialchars($post['excerpt']); ?></p>
+                    <div class="pt-4 border-t border-gray-100 mt-auto">
+                        <div class="flex items-center space-x-4 text-sm text-gray-500 mb-4">
+                            <span><i class="fa fa-user mr-1 text-orange-500"></i> <?php echo htmlspecialchars($post['author']); ?></span>
+                            <a href="blog.php?category=<?php echo urlencode($post['category']); ?>" class="hover:text-blue-600"><i class="fa fa-tag mr-1 text-orange-500"></i> <?php echo htmlspecialchars($post['category']); ?></a>
+                        </div>
+                        <?php if (isset($post['tags']) && !empty($post['tags'])): ?>
+                          <div class="flex flex-wrap gap-2 mb-4">
+                            <?php foreach ($post['tags'] as $postTag): ?>
+                              <a href="blog.php?tag=<?php echo urlencode($postTag); ?>" class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full hover:bg-blue-500 hover:text-white transition-colors">#<?php echo htmlspecialchars($postTag); ?></a>
+                            <?php endforeach; ?>
+                          </div>
+                        <?php endif; ?>
+                        <a href="blog_details.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="font-semibold text-orange-500 hover:text-orange-600 transition-colors">
+                            Read More <i class="fas fa-long-arrow-alt-right ml-1"></i>
+                        </a>
                     </div>
-                    <div class="blog_details p-4">
-                      <a class="d-inline-block" href="blog_details.php?slug=<?php echo $post['slug']; ?>">
-                        <h2 class="text-xl font-semibold text-gray-800 hover:text-custom-blue transition-colors duration-300"><?php echo $post['title']; ?></h2>
-                      </a>
-                      <p class="text-gray-600 my-3"><?php echo $post['excerpt']; ?></p>
-                      <ul class="blog-info-link mt-4 mb-4 border-t border-gray-100 pt-3">
-                        <li><i class="fa fa-user"></i> <?php echo $post['author']; ?></li>
-                        <li>
-                          <a href="blog.php?category=<?php echo urlencode($post['category']); ?>">
-                            <i class="fa fa-tag"></i> <?php echo $post['category']; ?>
-                          </a>
-                        </li>
-                      </ul>
-                      <?php if (isset($post['tags']) && !empty($post['tags'])): ?>
-                      <div class="post-tags mb-3">
-                        <?php foreach ($post['tags'] as $postTag): ?>
-                          <a href="blog.php?tag=<?php echo urlencode($postTag); ?>" class="inline-block text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded mr-1 mb-1 hover:bg-gray-300">
-                            #<?php echo $postTag; ?>
-                          </a>
-                        <?php endforeach; ?>
-                      </div>
-                      <?php endif; ?>
-                      <a href="blog_details.php?slug=<?php echo $post['slug']; ?>" class="inline-block py-2 px-4 bg-gray-200 text-gray-700 rounded hover:bg-custom-orange hover:text-white transition-colors duration-300 font-medium mt-2">
-                        Read More <i class="fas fa-long-arrow-alt-right ml-1"></i>
-                      </a>
-                    </div>
-                  </article>
-                </div>
+                  </div>
+                </article>
                 <?php endforeach; ?>
               </div>
             <?php endif; ?>
             
-            <!-- Pagination -->
             <?php if ($totalPages > 1): ?>
-            <nav class="blog-pagination justify-content-center d-flex mt-5">
-              <ul class="pagination">
+            <nav class="mt-12" aria-label="Pagination">
+              <ul class="flex justify-center items-center space-x-1 sm:space-x-2">
                 <?php if ($currentPageNum > 1): ?>
-                <li class="page-item">
-                  <a href="<?php echo buildPaginationUrl($currentPageNum - 1); ?>" class="page-link rounded-l border border-gray-300 px-4 py-2 bg-white text-gray-700 hover:bg-gray-100" aria-label="Previous">
-                    <i class="fas fa-chevron-left"></i>
+                <li>
+                  <a href="<?php echo buildPaginationUrl($currentPageNum - 1); ?>" class="flex items-center justify-center w-10 h-10 text-gray-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
+                    <span class="sr-only">Previous</span>
+                    <i class="fas fa-chevron-left text-xs"></i>
                   </a>
                 </li>
                 <?php endif; ?>
                 
                 <?php 
-                // Determine range of page numbers to show
                 $startPage = max(1, $currentPageNum - 2);
                 $endPage = min($totalPages, $startPage + 4);
-                
-                // Adjust start page if end page is at max
-                if ($endPage == $totalPages) {
+                if ($endPage === $totalPages) {
                     $startPage = max(1, $endPage - 4);
                 }
                 
                 for ($i = $startPage; $i <= $endPage; $i++): 
+                  $isCurrent = $i === $currentPageNum;
                 ?>
-                <li class="page-item <?php echo $i === $currentPageNum ? 'active' : ''; ?>">
-                  <a href="<?php echo buildPaginationUrl($i); ?>" class="page-link border border-gray-300 px-4 py-2 <?php echo $i === $currentPageNum ? 'bg-custom-orange text-white' : 'bg-white text-gray-700 hover:bg-gray-100'; ?>">
+                <li>
+                  <a href="<?php echo buildPaginationUrl($i); ?>" class="flex items-center justify-center w-10 h-10 border rounded-lg transition-colors <?php echo $isCurrent ? 'bg-orange-500 border-orange-500 text-white cursor-default' : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-100'; ?>">
                     <?php echo $i; ?>
                   </a>
                 </li>
                 <?php endfor; ?>
                 
                 <?php if ($currentPageNum < $totalPages): ?>
-                <li class="page-item">
-                  <a href="<?php echo buildPaginationUrl($currentPageNum + 1); ?>" class="page-link rounded-r border border-gray-300 px-4 py-2 bg-white text-gray-700 hover:bg-gray-100" aria-label="Next">
-                    <i class="fas fa-chevron-right"></i>
+                <li>
+                  <a href="<?php echo buildPaginationUrl($currentPageNum + 1); ?>" class="flex items-center justify-center w-10 h-10 text-gray-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
+                    <span class="sr-only">Next</span>
+                    <i class="fas fa-chevron-right text-xs"></i>
                   </a>
                 </li>
                 <?php endif; ?>
@@ -239,95 +237,71 @@ function buildPaginationUrl($pageNum) {
           </div>
         </div>
         
-        <!-- Sidebar -->
-        <div class="col-lg-4 w-full lg:w-1/4 px-4">
-          <div class="blog_right_sidebar space-y-6">
-            <!-- Search Widget -->
-            <aside class="single_sidebar_widget search_widget bg-white shadow-md rounded-lg p-6">
-              <form action="blog.php" method="get" class="relative">
-                <div class="form-group">
-                  <div class="input-group mb-3">
-                    <input type="text" name="search" class="form-control w-full rounded-l-lg py-3 px-4 bg-gray-100 border-0 focus:outline-none focus:ring-2 focus:ring-custom-blue" placeholder="Search Keywords" value="<?php echo $search; ?>">
-                    <div class="input-group-append">
-                      <button class="btn rounded-r-lg py-3 px-4 bg-custom-orange text-white hover:bg-orange-600 transition-colors" type="submit">
-                        <i class="fa fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
+        <div class="w-full lg:w-1/3 px-4 mt-12 lg:mt-0">
+          <div class="space-y-8 sticky top-8">
+            <aside class="bg-white p-6 rounded-lg shadow-md">
+              <h4 class="text-xl font-bold text-gray-900 mb-4 pb-3 border-b border-gray-200">Search</h4>
+              <form action="blog.php" method="get">
+                <div class="relative">
+                  <input type="text" name="search" class="w-full rounded-lg py-2.5 pl-4 pr-12 text-gray-700 bg-gray-100 border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Search..." value="<?php echo htmlspecialchars($search); ?>">
+                  <button class="absolute inset-y-0 right-0 flex items-center justify-center w-12 bg-orange-500 text-white rounded-r-lg hover:bg-orange-600 transition-colors" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
                 </div>
-                <button class="btn w-full rounded-lg py-3 bg-custom-orange text-white hover:bg-orange-600 transition-colors" type="submit">Search</button>
               </form>
             </aside>
 
-            <!-- Categories Widget -->
-            <aside class="single_sidebar_widget post_category_widget bg-white shadow-md rounded-lg p-6">
-              <h4 class="widget_title text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Categories</h4>
-              <ul class="list-none space-y-2">
-                <?php foreach ($categories as $categoryName => $count): ?>
+            <aside class="bg-white p-6 rounded-lg shadow-md">
+              <h4 class="text-xl font-bold text-gray-900 mb-4 pb-3 border-b border-gray-200">Categories</h4>
+              <ul class="space-y-1">
+                <?php foreach ($categories as $categoryName => $count): 
+                  $isCurrentCategory = ($category === $categoryName);
+                ?>
                 <li>
-                  <a href="blog.php?category=<?php echo urlencode($categoryName); ?>" class="flex items-center justify-between py-2 px-3 hover:bg-gray-100 rounded transition-colors duration-300 <?php echo ($category === $categoryName) ? 'bg-gray-100 font-medium' : ''; ?>">
-                    <p class="text-gray-700"><?php echo $categoryName; ?></p>
-                    <p class="text-gray-500"><?php echo $count; ?></p>
+                  <a href="blog.php?category=<?php echo urlencode($categoryName); ?>" class="flex justify-between items-center py-2 px-3 rounded-lg transition-colors <?php echo $isCurrentCategory ? 'bg-orange-50 text-orange-600 font-semibold' : 'text-gray-700 hover:bg-gray-100'; ?>">
+                    <span><?php echo htmlspecialchars($categoryName); ?></span>
+                    <span class="text-sm font-mono px-2 py-0.5 rounded-full <?php echo $isCurrentCategory ? 'bg-orange-200 text-orange-700' : 'bg-gray-200 text-gray-600'; ?>"><?php echo $count; ?></span>
                   </a>
                 </li>
                 <?php endforeach; ?>
               </ul>
             </aside>
 
-            <!-- Recent Posts Widget -->
-            <aside class="single_sidebar_widget popular_post_widget bg-white shadow-md rounded-lg p-6">
-              <h4 class="widget_title text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Recent Posts</h4>
-              <div class="recent-posts space-y-4">
-                <?php foreach ($recentPosts as $recentPost): 
-                  $dateParts = explode(' ', $recentPost['date']);
-                  $day = $dateParts[0] ?? '';
-                  $month = isset($dateParts[1]) ? substr($dateParts[1], 0, 3) : '';
-                  $year = $dateParts[2] ?? '';
-                ?>
-                <div class="media post_item flex items-start border-b border-gray-100 pb-4">
-                  <img src="<?php echo $recentPost['image']; ?>" alt="<?php echo $recentPost['title']; ?>" class="w-16 h-16 object-cover rounded-lg mr-3">
-                  <div class="media-body">
-                    <a href="blog_details.php?slug=<?php echo $recentPost['slug']; ?>" class="text-gray-800 hover:text-custom-blue transition-colors duration-300">
-                      <h3 class="text-base font-medium"><?php echo $recentPost['title']; ?></h3>
+            <aside class="bg-white p-6 rounded-lg shadow-md">
+              <h4 class="text-xl font-bold text-gray-900 mb-4 pb-3 border-b border-gray-200">Recent Posts</h4>
+              <div class="space-y-4">
+                <?php foreach ($recentPosts as $recentPost): ?>
+                <div class="flex items-start group">
+                  <img src="<?php echo htmlspecialchars($recentPost['image']); ?>" alt="<?php echo htmlspecialchars($recentPost['title']); ?>" class="w-20 h-20 object-cover rounded-lg mr-4">
+                  <div>
+                    <a href="blog_details.php?slug=<?php echo htmlspecialchars($recentPost['slug']); ?>">
+                      <h3 class="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors"><?php echo htmlspecialchars($recentPost['title']); ?></h3>
                     </a>
-                    <p class="text-sm text-gray-500 mt-1"><?php echo $day; ?> <?php echo $month; ?><?php echo !empty($year) ? ', ' . $year : ''; ?></p>
+                    <p class="text-sm text-gray-500 mt-1"><?php echo htmlspecialchars($recentPost['date']); ?></p>
                   </div>
                 </div>
                 <?php endforeach; ?>
               </div>
             </aside>
 
-            <!-- Tags Widget -->
-            <aside class="single_sidebar_widget tag_cloud_widget bg-white shadow-md rounded-lg p-6">
-              <h4 class="widget_title text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Tags</h4>
-              <ul class="flex flex-wrap gap-2">
-                <?php foreach ($allTags as $tagName): ?>
-                <li>
-                  <a href="blog.php?tag=<?php echo urlencode($tagName); ?>" 
-                     class="inline-block py-1 px-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-blue-500 hover:text-white transition-colors duration-300 <?php echo ($tag === $tagName) ? 'bg-blue-500 text-white' : ''; ?>">
-                    <?php echo $tagName; ?>
+            <aside class="bg-white p-6 rounded-lg shadow-md">
+              <h4 class="text-xl font-bold text-gray-900 mb-4 pb-3 border-b border-gray-200">Tags</h4>
+              <div class="flex flex-wrap gap-2">
+                <?php foreach ($allTags as $tagName): 
+                  $isCurrentTag = ($tag === $tagName);
+                ?>
+                  <a href="blog.php?tag=<?php echo urlencode($tagName); ?>" class="text-sm font-medium py-1 px-3 rounded-full transition-colors <?php echo $isCurrentTag ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-blue-500 hover:text-white'; ?>">
+                    <?php echo htmlspecialchars($tagName); ?>
                   </a>
-                </li>
                 <?php endforeach; ?>
-              </ul>
-            </aside>
-
-            <!-- Newsletter Widget -->
-            <aside class="single_sidebar_widget newsletter_widget bg-gray-50 rounded-lg p-6 shadow-md">
-              <h4 class="widget_title text-xl font-bold text-gray-800 mb-4">Newsletter</h4>
-              <form action="#" method="post">
-                <div class="form-group mb-4">
-                  <input type="email" class="form-control w-full p-3 rounded-lg bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-custom-blue" placeholder="Enter email" required>
-                </div>
-                <button class="w-full py-3 px-6 rounded-lg bg-custom-orange text-white hover:bg-orange-600 transition-colors duration-300" type="submit">Subscribe</button>
-              </form>
+              </div>
             </aside>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Blog Area End --></main>
+  </main>
 
 <?php include 'includes/footer.php'; ?>
 <?php include 'includes/scripts.php'; ?>

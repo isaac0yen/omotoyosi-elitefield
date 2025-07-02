@@ -12,22 +12,26 @@ require_once 'includes/config.php';
 <?php include 'includes/navigation.php'; ?>
 
 <main>
-  <!--? Hero Start -->
-  <div class="slider-area2">
-    <div class="slider-height2 d-flex align-items-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-12">
-            <div class="hero-cap hero-cap2 pt-20 text-center">
-              <h2 class="text-white">Contact Us</h2>
+
+  <!-- Want To work -->
+  <section class="wantToWork-area mt-10">
+    <div class="container">
+      <div class="wants-wrapper w-padding2 section-bg" data-background="resources/world.jpg">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-xl-5 col-lg-9 col-md-8">
+            <div class="wantToWork-caption wantToWork-caption2">
+              <h2>Lets help the leaders of tomorrow!</h2>
             </div>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-4">
+            <a href="https://forms.gle/duZ5grMWtzeUcJkJ9" class="btn white-btn f-right sm-left">Become A Volunteer</a>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Hero End -->
-  
+  </section>
+
+
   <!-- ================ contact section start ================= -->
   <section class="contact-section">
     <div class="container">
@@ -91,7 +95,7 @@ require_once 'includes/config.php';
     </div>
   </section>
   <!-- ================ contact section end ================= -->
-  
+
   <!-- Map Section Begin -->
   <div class="map-section mt-5">
     <div class="container">
@@ -109,93 +113,7 @@ require_once 'includes/config.php';
     </div>
   </div>
   <!-- Map Section End -->
-  
-  <!-- Volunteer Section Begin -->
-  <section class="volunteer-section section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-          <div class="section-tittle text-center mb-5">
-            <span>Make A Difference</span>
-            <h2 class="custom-text">Become a Volunteer</h2>
-            <p class="mt-4">
-              Join our team of dedicated volunteers who are making a real difference in the lives of underprivileged children. 
-              Whether you can contribute your time, skills, or resources, there's a place for you in our community.
-            </p>
-          </div>
-          <div class="volunteer-form bg-gray-50 p-5 rounded-lg shadow-sm">
-            <form action="volunteer_process.php" method="post" id="volunteerForm">
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-group">
-                    <label for="fullName" class="form-label font-weight-bold">Full Name</label>
-                    <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Your full name" required>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-group">
-                    <label for="email" class="form-label font-weight-bold">Email Address</label>
-                    <input type="email" class="form-control" id="volunteerEmail" name="email" placeholder="Your email address" required>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-group">
-                    <label for="phone" class="form-label font-weight-bold">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Your phone number" required>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-group">
-                    <label for="occupation" class="form-label font-weight-bold">Occupation</label>
-                    <input type="text" class="form-control" id="occupation" name="occupation" placeholder="Your current occupation">
-                  </div>
-                </div>
-                <div class="col-12 mb-4">
-                  <div class="form-group">
-                    <label for="skills" class="form-label font-weight-bold">Skills & Expertise</label>
-                    <select class="form-control" id="skills" name="skills">
-                      <option value="" selected disabled>Select your area of expertise</option>
-                      <option value="Teaching">Teaching</option>
-                      <option value="Mentoring">Mentoring</option>
-                      <option value="Administration">Administration</option>
-                      <option value="Event Planning">Event Planning</option>
-                      <option value="Fundraising">Fundraising</option>
-                      <option value="Marketing">Marketing & Communications</option>
-                      <option value="IT">Information Technology</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-12 mb-4">
-                  <div class="form-group">
-                    <label for="availability" class="form-label font-weight-bold">Availability</label>
-                    <select class="form-control" id="availability" name="availability">
-                      <option value="" selected disabled>When are you available?</option>
-                      <option value="Weekdays">Weekdays</option>
-                      <option value="Weekends">Weekends</option>
-                      <option value="Both">Both Weekdays and Weekends</option>
-                      <option value="Flexible">Flexible Schedule</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-12 mb-4">
-                  <div class="form-group">
-                    <label for="message" class="form-label font-weight-bold">Why do you want to volunteer?</label>
-                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Tell us about yourself and why you'd like to volunteer with us"></textarea>
-                  </div>
-                </div>
-              </div>
-              <div class="text-center mt-4">
-                <button type="submit" class="btn btn-primary btn-lg px-5 py-3 bg-custom-orange border-0 rounded-pill">Submit Application</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Volunteer Section End -->
-  
+
   <!-- Donation Section Begin -->
   <section class="donation-section section-padding bg-gray-50 py-16">
     <div class="container">
@@ -209,48 +127,14 @@ require_once 'includes/config.php';
               No contribution is too small, and every amount makes a significant difference in a child's life.
             </p>
           </div>
-          <div class="donation-options">
-            <div class="row">
-              <div class="col-md-4 mb-4">
-                <div class="donation-card bg-white p-4 text-center rounded-lg shadow-sm h-100">
-                  <div class="donation-amount mb-3">
-                    <h3 class="font-weight-bold text-custom-orange">₦5,000</h3>
-                  </div>
-                  <div class="donation-impact mb-3">
-                    <p>Provides school supplies for one child</p>
-                  </div>
-                  <a href="#" class="btn btn-outline-primary rounded-pill px-4 py-2">Donate Now</a>
-                </div>
+          <div class="bg-white p-8 rounded-lg shadow-md">
+            <div class="text-center">
+              <h3 class="text-2xl font-bold text-gray-800 mb-4">Official Bank Account Details</h3>
+              <div class="space-y-2">
+                <p class="text-lg font-semibold text-custom-blue">Account Number: <span class="text-gray-700">2046931212</span></p>
+                <p class="text-lg font-semibold text-custom-blue">Bank Name: <span class="text-gray-700">First Bank</span></p>
+                <p class="text-lg font-semibold text-custom-blue">Account Name: <span class="text-gray-700">Omotoyosi Elitefield Educational Foundation</span></p>
               </div>
-              <div class="col-md-4 mb-4">
-                <div class="donation-card bg-white p-4 text-center rounded-lg shadow-sm h-100 position-relative">
-                  <div class="popular-badge position-absolute" style="top: -10px; right: 10px; background-color: #FF6B35; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: bold;">
-                    Popular
-                  </div>
-                  <div class="donation-amount mb-3">
-                    <h3 class="font-weight-bold text-custom-blue">₦20,000</h3>
-                  </div>
-                  <div class="donation-impact mb-3">
-                    <p>Sponsors a child's education for one month</p>
-                  </div>
-                  <a href="#" class="btn btn-primary rounded-pill px-4 py-2 bg-custom-orange border-0">Donate Now</a>
-                </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                <div class="donation-card bg-white p-4 text-center rounded-lg shadow-sm h-100">
-                  <div class="donation-amount mb-3">
-                    <h3 class="font-weight-bold text-custom-orange">₦50,000</h3>
-                  </div>
-                  <div class="donation-impact mb-3">
-                    <p>Provides educational materials for a classroom</p>
-                  </div>
-                  <a href="#" class="btn btn-outline-primary rounded-pill px-4 py-2">Donate Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="custom-donation mt-5 text-center">
-              <p class="mb-4 font-weight-bold">Would you like to donate a different amount?</p>
-              <a href="#" class="btn btn-lg btn-primary rounded-pill px-5 py-3 bg-custom-blue border-0">Custom Donation</a>
             </div>
           </div>
         </div>
@@ -264,4 +148,5 @@ require_once 'includes/config.php';
 <?php include 'includes/scripts.php'; ?>
 
 </body>
+
 </html>

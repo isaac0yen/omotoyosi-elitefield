@@ -32,13 +32,11 @@
     }
   </script>
 
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="./resources/style/custom.css" />
   <link rel="stylesheet" href="./resources/style/tailwind-custom.css" />
 
   <link rel="stylesheet" href="./resources/style/custom.css" />
 
-  <!-- CSS here -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
   <link rel="stylesheet" href="assets/css/slicknav.css" />
@@ -52,7 +50,6 @@
   <link rel="stylesheet" href="assets/css/nice-select.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- Essential CSS (keeping minimal required CSS) -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />

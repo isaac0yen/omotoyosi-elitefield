@@ -7,7 +7,7 @@ $includeBlogScripts = true;
 require_once 'includes/config.php';
 
 // Get the blog post based on slug
-$slug = isset($_GET['slug']) ? $_GET['slug'] : '';
+$slug = isset($_GET['slug']) ? htmlspecialchars($_GET['slug']) : '';
 $post = getBlogPostBySlug($slug);
 
 if (!$post) {
@@ -17,33 +17,13 @@ if (!$post) {
 }
 
 // Set the page title based on post title
-$pageTitle = $post['title'] . ' | ' . $siteConfig['site_name'];
+$pageTitle = $post['title'] . ' | Omotoyosi Elitefield Educational Foundation';
 $pageDescription = $post['excerpt'];
 
-// Additional scripts for blog content styling
-$pageSpecificScripts = <<<EOT
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const blogContent = document.querySelector('.blog-content');
-  if (blogContent) {
-    blogContent.querySelectorAll('h3').forEach(heading => {
-      heading.classList.add('text-2xl', 'font-semibold', 'text-gray-900', 'mb-4', 'mt-6');
-    });
-      
-    blogContent.querySelectorAll('p').forEach(paragraph => {
-      paragraph.classList.add('text-gray-700', 'leading-relaxed', 'mb-4');
-    });
-      
-    blogContent.querySelectorAll('ul').forEach(list => {
-      list.classList.add('list-disc', 'pl-6', 'space-y-2', 'text-gray-700', 'mb-4');
-    });
-  }
-});
-</script>
-EOT;
+// The custom script to style blog content is no longer needed.
+// The Tailwind Typography plugin (prose class) handles this automatically.
+$pageSpecificScripts = '';
 
-// Get recent posts for sidebar
-$recentPosts = getRecentBlogPosts(3);
 ?>
 
 <!DOCTYPE html>
@@ -51,57 +31,70 @@ $recentPosts = getRecentBlogPosts(3);
 <head>
   <?php include 'includes/header.php'; ?>
 </head>
-<body class="bg-gray-50 font-sans antialiased">
+<body class="bg-gray-100 font-sans antialiased">
   <?php include 'includes/navigation.php'; ?>
 
-  <main class="container mx-auto px-4 py-8">
-      <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
-          <!-- Hero Section -->
-          <div class="relative h-64 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-              <h1 class="text-4xl font-bold text-white text-center px-6"><?php echo $post['title']; ?></h1>
-          </div>
+  <main class="py-12 sm:py-16">
+    <div class="container mx-auto px-4">
+      <article class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+        
+        <div class="w-full">
+            <img 
+                src="<?php echo htmlspecialchars($post['image']); ?>" 
+                alt="Featured image for <?php echo htmlspecialchars($post['title']); ?>" 
+                class="w-full h-64 sm:h-80 md:h-96 object-cover"
+            >
+        </div>
 
-          <!-- Blog Content -->
-          <div class="p-8">
-              <!-- Post Meta Information -->
-              <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
-                  <div class="flex items-center space-x-4">
-                      <span class="text-gray-600 text-sm">
-                          <i class="fas fa-user mr-2"></i><?php echo $post['author']; ?>
-                      </span>
-                      <span class="text-gray-600 text-sm">
-                          <i class="fas fa-calendar mr-2"></i><?php echo $post['date']; ?>
-                      </span>
-                      <span class="text-gray-600 text-sm">
-                          <i class="fas fa-tag mr-2"></i><?php echo $post['category']; ?>
-                      </span>
+        <div class="p-6 sm:p-8 lg:p-12">
+            <header class="mb-8">
+              <a href="blog.php?category=<?php echo urlencode($post['category']); ?>" class="text-sm font-bold uppercase text-orange-500 hover:text-orange-600"><?php echo htmlspecialchars($post['category']); ?></a>
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-2"><?php echo htmlspecialchars($post['title']); ?></h1>
+              
+              <div class="mt-6 flex items-center space-x-4 text-sm text-gray-500 border-t border-b border-gray-100 py-4">
+                  <div class="flex items-center">
+                      <i class="fas fa-user mr-2 text-orange-500"></i>
+                      <span>By <?php echo htmlspecialchars($post['author']); ?></span>
+                  </div>
+                  <span class="text-gray-300">|</span>
+                  <div class="flex items-center">
+                      <i class="fas fa-calendar-alt mr-2 text-orange-500"></i>
+                      <time datetime="<?php echo date('Y-m-d', strtotime($post['date'])); ?>"><?php echo htmlspecialchars($post['date']); ?></time>
                   </div>
               </div>
+            </header>
 
-              <!-- Featured Image -->
-              <div class="mb-8">
-                  <img 
-                      src="<?php echo $post['image']; ?>" 
-                      alt="<?php echo $post['title']; ?>" 
-                      class="w-full h-96 object-cover rounded-lg shadow-md"
-                  >
-              </div>
+            <div class="prose prose-lg max-w-none prose-h3:text-gray-800 prose-h3:font-semibold prose-p:text-gray-700 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline">
+                <?php echo $post['content']; ?>
+            </div>
 
-              <!-- Blog Content -->
-              <div class="blog-content prose prose-lg max-w-full">
-                  <?php echo $post['content']; ?>
-              </div>
-
-              <!-- Social Share -->
-              <div class="mt-8 pt-6 border-t border-gray-200 flex justify-between items-center">
-                  <div class="flex space-x-4">
-                      <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-facebook-f"></i></a>
-                      <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
-                      <a href="#" class="text-pink-500 hover:text-pink-700"><i class="fab fa-instagram"></i></a>
-                  </div>
-              </div>
-          </div>
-      </div>
+            <footer class="mt-10 pt-8 border-t border-gray-200">
+                <?php if (isset($post['tags']) && !empty($post['tags'])): ?>
+                <div class="mb-6">
+                    <h4 class="text-sm font-bold text-gray-500 uppercase mb-3">Tags</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <?php foreach ($post['tags'] as $postTag): ?>
+                            <a href="blog.php?tag=<?php echo urlencode($postTag); ?>" class="text-xs font-medium py-1.5 px-3 rounded-full transition-colors bg-gray-100 text-gray-600 hover:bg-blue-500 hover:text-white">
+                                #<?php echo htmlspecialchars($postTag); ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+                
+                <div class="flex justify-between items-center">
+                    <h4 class="text-sm font-bold text-gray-500 uppercase">Share this post</h4>
+                    <div class="flex space-x-2">
+                        <a href="#" aria-label="Share on Facebook" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-blue-600 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Share on Twitter" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-sky-500 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Share on Instagram" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-pink-500 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Share on LinkedIn" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-blue-700 hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+      </article>
+    </div>
   </main>
 
   <?php include 'includes/footer.php'; ?>

@@ -218,7 +218,7 @@ require_once 'includes/config.php';
             </div>
           </div>
           <div class="col-xl-2 col-lg-3 col-md-4">
-            <a href="contact.php" class="btn white-btn f-right sm-left">Become A Volunteer</a>
+            <a href="https://forms.gle/duZ5grMWtzeUcJkJ9" class="btn white-btn f-right sm-left">Become A Volunteer</a>
           </div>
         </div>
       </div>
@@ -238,18 +238,15 @@ require_once 'includes/config.php';
               <div class="testimonial-caption">
                 <!-- founder -->
                 <div class="testimonial-founder">
-                  <div class="founder-img mb-40">
-                    <img src="/resources/quote.jpg" style="width: 200px;height:200px;" />
+                  <div class="founder-img mb-30">
+                    <img src="/resources/toyosi.jpeg" style="width: 200px;height:200px;" />
                     <span>Oladeji Omotoyosi</span>
                     <p>Executive Directior</p>
                   </div>
                 </div>
                 <div class="testimonial-top-cap">
                   <p>
-                    “I am at an age where I just want to be fit and healthy
-                    our bodies are our responsibility! So start caring for
-                    your body and it will care for you. Eat clean it will
-                    care for you and workout hard.”
+                    “I am committed to giving children more than just access to quality education, we build character, nurture purpose, and empower them to rise as lights in their generation.”
                   </p>
                 </div>
               </div>

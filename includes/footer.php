@@ -8,7 +8,7 @@
                         <div class="single-footer-caption mb-30">
                             <!-- logo -->
                             <div class="footer-logo mb-25">
-                                <a href="index.php"><img src="./resources/omotoyosi-logo.png" alt="logo" style="max-width: 250px;"></a>
+                                <a href="index.php"><img src="../resources/logo_text.png" alt="logo" style="max-width: 250px;"></a>
                             </div>
                             <div class="footer-tittle">
                                 <div class="footer-pera">
@@ -16,11 +16,19 @@
                                 </div>
                             </div>
                             <!-- social -->
-                            <div class="footer-social">
-                                <a href="<?php echo $siteConfig['social_media']['twitter']; ?>"><i class="fab fa-twitter" style="background-color: rgb(67, 142, 198);"></i></a>
-                                <a href="<?php echo $siteConfig['social_media']['instagram']; ?>"><i class="fab fa-instagram" style="background-color: rgb(231, 120, 46);"></i></a>
-                                <a href="<?php echo $siteConfig['social_media']['facebook']; ?>"><i class="fab fa-facebook-f" style="background-color: rgb(67, 142, 198);"></i></a>
-                                <a href="<?php echo $siteConfig['social_media']['linkedin']; ?>"><i class="fab fa-linkedin" style="background-color: rgb(231, 120, 46);"></i></a>
+                            <div class="footer-social flex gap-4 mt-6">
+                                <a href="<?php echo $siteConfig['social_media']['twitter']; ?>" class="hover:opacity-80 transition-opacity">
+                                    <i class="fab fa-twitter text-xl p-3 rounded-full bg-[#438EC6] text-white hover:bg-opacity-90"></i>
+                                </a>
+                                <a href="<?php echo $siteConfig['social_media']['instagram']; ?>" class="hover:opacity-80 transition-opacity">
+                                    <i class="fab fa-instagram text-xl p-3 rounded-full bg-[#E7782E] text-white hover:bg-opacity-90"></i>
+                                </a>
+                                <a href="<?php echo $siteConfig['social_media']['facebook']; ?>" class="hover:opacity-80 transition-opacity">
+                                    <i class="fab fa-facebook-f text-xl p-3 rounded-full bg-[#438EC6] text-white hover:bg-opacity-90"></i>
+                                </a>
+                                <a href="<?php echo $siteConfig['social_media']['linkedin']; ?>" class="hover:opacity-80 transition-opacity">
+                                    <i class="fab fa-linkedin text-xl p-3 rounded-full bg-[#E7782E] text-white hover:bg-opacity-90"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -33,24 +41,8 @@
                             <ul>
                                 <li><a href="index.php">Home</a></li>
                                 <li><a href="about.php">About</a></li>
-                                <li><a href="donate.php">Donate</a></li>
                                 <li><a href="blog.php">Blog</a></li>
                                 <li><a href="contact.php">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-footer-caption mb-50">
-                        <div class="footer-tittle">
-                            <h4 class="custom-text-orange">Our Programs</h4>
-                            <ul>
-                                <li><a href="#">Educational Support</a></li>
-                                <li><a href="#">Scholarship Program</a></li>
-                                <li><a href="#">Mentorship</a></li>
-                                <li><a href="#">Community Outreach</a></li>
-                                <li><a href="#">Volunteer</a></li>
                             </ul>
                         </div>
                     </div>
@@ -64,7 +56,7 @@
                         <div class="footer-cap">
                             <p><i class="fas fa-map-marker-alt" style="color: rgb(231, 120, 46);"></i> <?php echo $siteConfig['contact_address']; ?></p>
                             <p><i class="fas fa-phone" style="color: rgb(67, 142, 198);"></i> <?php echo $siteConfig['contact_phone']; ?></p>
-                            <p><i class="fas fa-envelope" style="color: rgb(231, 120, 46);"></i> <a href="mailto:<?php echo $siteConfig['contact_email']; ?>"><?php echo $siteConfig['contact_email']; ?></a></p>
+                            <p><i class="fas fa-envelope" style="color: rgb(231, 120, 46);"></i> <a class="text-black" href="mailto:<?php echo $siteConfig['contact_email']; ?>"><?php echo $siteConfig['contact_email']; ?></a></p>
                         </div>
                     </div>
                 </div>
