@@ -132,7 +132,7 @@ require_once 'includes/config.php';
         <div class="section-tittle text-center mb-70">
           <span>Changing Lives Through Education</span>
           <h2 class="custom-text">Meet Our Scholarship Recipients</h2>
-          <p class="mt-3">These bright young students are pursuing their educational dreams through our fully-funded scholarship program, generously sponsored by Kids Alpha Nigeria.</p>
+          <p class="mt-3">These bright young students are pursuing their educational dreams through our fully-funded scholarship program, generously sponsored by <strong>Kids Alpha Nigeria</strong>.</p>
         </div>
       </div>
     </div>
