@@ -130,8 +130,9 @@ require_once 'includes/config.php';
       <div class="col-xl-6 col-lg-7 col-md-10 col-sm-10">
         <!-- Section Title -->
         <div class="section-tittle text-center mb-70">
-          <span>Our Impact</span>
-          <h2 class="custom-text">See Our Work In Action</h2>
+          <span>Changing Lives Through Education</span>
+          <h2 class="custom-text">Meet Our Scholarship Recipients</h2>
+          <p class="mt-3">These bright young students are pursuing their educational dreams through our fully-funded scholarship program, generously sponsored by Kids Alpha Nigeria.</p>
         </div>
       </div>
     </div>
