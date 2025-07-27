@@ -9,7 +9,7 @@
       $('body').css({
         'overflow': 'visible'
       });
-    }, 5000); // 5000 milliseconds = 5 seconds
+    }, 3000); // 3000 milliseconds = 3 seconds
   });
   /* 2. sticky And Scroll UP */
   $(window).on('scroll', function () {
@@ -60,7 +60,7 @@
     });
     BasicSlider.slick({
       autoplay: false,
-      autoplaySpeed: 4000,
+      autoplaySpeed: 3000,
       dots: false,
       fade: true,
       arrows: false,

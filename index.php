@@ -36,7 +36,7 @@ require_once 'includes/config.php';
                 <!-- Hero-btn -->
                 <div class="hero__btn">
                   <a href="contact.php" class="btn hero-btn mb-10 custom-button" data-animation="fadeInLeft" data-delay=".8s">Donate</a>
-                  <a class="cal-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">
+                  <a href="tel:<?php echo $siteConfig['contact_phone']; ?>" class="cal-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">
                     <i class="flaticon-null text-white"></i>
                     <p class="text-white"><?php echo $siteConfig['contact_phone']; ?></p>
                   </a>
@@ -120,8 +120,193 @@ require_once 'includes/config.php';
   </div>
   <!-- Services Area End -->
 
-  
+<!-- Swiper CSS CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+<!-- Image Carousel Section -->
+<div class="image-carousel-area section-padding30">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-7 col-md-10 col-sm-10">
+        <!-- Section Title -->
+        <div class="section-tittle text-center mb-70">
+          <span>Our Impact</span>
+          <h2 class="custom-text">See Our Work In Action</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="swiper image-carousel">
+          <div class="swiper-wrapper">
+            <?php
+            $carouselDir = './resources/carousel/';
+            $images = glob($carouselDir . '*.{jpeg,jpg,png}', GLOB_BRACE);
+
+            if (!empty($images)) {
+              foreach ($images as $image) {
+                echo '<div class="swiper-slide">';
+                echo '<img src="' . $image . '" alt="Foundation Activities" class="img-fluid rounded shadow">';
+                echo '</div>';
+              }
+            } else {
+              echo '<div class="swiper-slide">';
+              echo '<div class="alert alert-info">No images found in carousel directory</div>';
+              echo '</div>';
+            }
+            ?>
+          </div>
+          
+          <!-- Navigation buttons -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          
+          <!-- Pagination dots -->
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Swiper JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const swiper = new Swiper('.image-carousel', {
+    // Basic settings
+    slidesPerView: 3,
+    spaceBetween: 20,
+    loop: true,
+    
+    // Autoplay
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    
+    // Pagination dots
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    
+    // Responsive breakpoints
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10
+      },
+      600: {
+        slidesPerView: 2,
+        spaceBetween: 15
+      },
+      1000: {
+        slidesPerView: 3,
+        spaceBetween: 20
+      }
+    }
+  });
+  
+  console.log('Swiper carousel initialized successfully');
+});
+</script>
+
+<!-- Enhanced CSS for carousel styling -->
+<style>
+.image-carousel-area {
+  background: #f8f9fa;
+  position: relative;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  display: block;
+}
+
+.swiper-slide:hover img {
+  transform: scale(1.05);
+}
+
+/* Custom navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  background: rgba(231, 120, 46, 0.9);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(231, 120, 46, 1);
+  transform: scale(1.1);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Custom pagination */
+.swiper-pagination {
+  margin-top: 30px;
+  position: static;
+}
+
+.swiper-pagination-bullet {
+  width: 14px;
+  height: 14px;
+  margin: 0 8px;
+  background: #ddd;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: rgb(231, 120, 46);
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 14px;
+  }
+}
+</style>
+  
   <!--? About Law Start-->
   <section class="about-low-area section-padding2">
     <div class="container">
@@ -174,7 +359,7 @@ require_once 'includes/config.php';
         <?php
         // Include team members data from config
         include_once 'includes/config.php';
-        
+
         // Display all team members
         foreach ($teamMembers as $index => $member) :
           // Create a new row every 4 members
@@ -182,27 +367,27 @@ require_once 'includes/config.php';
             echo '</div><div class="row">';
           endif;
         ?>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="single-team mb-30">
-            <div class="team-img">
-              <img src="<?php echo $member['image']; ?>" alt="<?php echo $member['alt']; ?>" />
-              <!-- Team Social -->
-              <?php if (!empty($member['social_media'])) : ?>
-              <ul class="team-social">
-                <?php foreach ($member['social_media'] as $social) : ?>
-                <li>
-                  <a href="<?php echo $social['url']; ?>" target="_blank"><i class="<?php echo $social['icon']; ?>"></i></a>
-                </li>
-                <?php endforeach; ?>
-              </ul>
-              <?php endif; ?>
-            </div>
-            <div class="team-caption">
-              <h3><?php echo $member['name']; ?></h3>
-              <p><?php echo $member['position']; ?></p>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="single-team mb-30">
+              <div class="team-img">
+                <img src="<?php echo $member['image']; ?>" alt="<?php echo $member['alt']; ?>" />
+                <!-- Team Social -->
+                <?php if (!empty($member['social_media'])) : ?>
+                  <ul class="team-social">
+                    <?php foreach ($member['social_media'] as $social) : ?>
+                      <li>
+                        <a href="<?php echo $social['url']; ?>" target="_blank"><i class="<?php echo $social['icon']; ?>"></i></a>
+                      </li>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php endif; ?>
+              </div>
+              <div class="team-caption">
+                <h3><?php echo $member['name']; ?></h3>
+                <p><?php echo $member['position']; ?></p>
+              </div>
             </div>
           </div>
-        </div>
         <?php endforeach; ?>
       </div>
     </div>
@@ -273,44 +458,44 @@ require_once 'includes/config.php';
         </div>
       </div>
 
-    <!-- Blog posts will be loaded dynamically via JavaScript -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="blog-posts-container">
-      <?php
-      $recentPosts = getRecentBlogPosts(2);
-      foreach ($recentPosts as $post):
+      <!-- Blog posts will be loaded dynamically via JavaScript -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="blog-posts-container">
+        <?php
+        $recentPosts = getRecentBlogPosts(2);
+        foreach ($recentPosts as $post):
           $dateParts = explode(' ', $post['date']);
           $day = $dateParts[0];
           $month = substr($dateParts[1], 0, 3);
-      ?>
+        ?>
           <div class="w-full">
-              <div class="mb-8">
-                  <div class="relative">
-                      <div class="overflow-hidden rounded-lg">
-                          <img src="<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>" class="w-full h-auto" />
-                          <!-- Blog date -->
-                          <div class="absolute top-4 left-4 bg-white px-3 py-2 rounded-lg text-center">
-                              <span class="block text-xl font-bold"><?php echo $day; ?></span>
-                              <p class="text-sm"><?php echo $month; ?></p>
-                          </div>
-                      </div>
-                      <div class="p-4">
-                          <p class="text-gray-500"><?php echo $post['position']; ?></p>
-                          <h3 class="text-xl font-bold mt-2">
-                              <a href="blog_details.php?slug=<?php echo $post['slug']; ?>" class="hover:text-blue-600">
-                                  <?php echo $post['title']; ?>
-                              </a>
-                          </h3>
-                          <p class="text-gray-600 mt-2"><?php echo $post['excerpt']; ?></p>
-                          <a href="blog_details.php?slug=<?php echo $post['slug']; ?>" class="inline-block mt-4 text-blue-600 hover:underline">
-                              Read More
-                          </a>
-                      </div>
+            <div class="mb-8">
+              <div class="relative">
+                <div class="overflow-hidden rounded-lg">
+                  <img src="<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>" class="w-full h-auto" />
+                  <!-- Blog date -->
+                  <div class="absolute top-4 left-4 bg-white px-3 py-2 rounded-lg text-center">
+                    <span class="block text-xl font-bold"><?php echo $day; ?></span>
+                    <p class="text-sm"><?php echo $month; ?></p>
                   </div>
+                </div>
+                <div class="p-4">
+                  <p class="text-gray-500"><?php echo $post['position']; ?></p>
+                  <h3 class="text-xl font-bold mt-2">
+                    <a href="blog_details.php?slug=<?php echo $post['slug']; ?>" class="hover:text-blue-600">
+                      <?php echo $post['title']; ?>
+                    </a>
+                  </h3>
+                  <p class="text-gray-600 mt-2"><?php echo $post['excerpt']; ?></p>
+                  <a href="blog_details.php?slug=<?php echo $post['slug']; ?>" class="inline-block mt-4 text-blue-600 hover:underline">
+                    Read More
+                  </a>
+                </div>
               </div>
+            </div>
           </div>
-      <?php endforeach; ?>
+        <?php endforeach; ?>
+      </div>
     </div>
-  </div>
   </section>
   <!-- Blog Area End -->
 

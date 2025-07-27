@@ -39,14 +39,18 @@
     integrity="sha512-MqL4+Io386IOPMKKyplKII0pVW5e+kb+PI/I3N87G3fHIfrgNNsRpzIXEi+0MQC0sR9xZNqZqCYVcC61fL5+Vg=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer" />
-    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <link rel="stylesheet" href="./resources/style/custom.css" />
   <link rel="stylesheet" href="./resources/style/tailwind-custom.css" />
 
   <link rel="stylesheet" href="./resources/style/custom.css" />
 
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link rel="stylesheet" href="assets/css/slicknav.css" />
   <link rel="stylesheet" href="assets/css/progressbar_barfiller.css" />
   <link rel="stylesheet" href="assets/css/gijgo.css" />
