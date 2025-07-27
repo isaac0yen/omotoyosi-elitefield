@@ -11,7 +11,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="./resources/logo_white.jpg" />
 
   <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./resources/script/tailwind.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -32,6 +32,14 @@
     }
   </script>
 
+  <!-- Font awesome alternate -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css"
+    integrity="sha512-MqL4+Io386IOPMKKyplKII0pVW5e+kb+PI/I3N87G3fHIfrgNNsRpzIXEi+0MQC0sR9xZNqZqCYVcC61fL5+Vg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+    
   <link rel="stylesheet" href="./resources/style/custom.css" />
   <link rel="stylesheet" href="./resources/style/tailwind-custom.css" />
 
@@ -54,13 +62,6 @@
   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- Font awesome alternate -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css"
-    integrity="sha512-MqL4+Io386IOPMKKyplKII0pVW5e+kb+PI/I3N87G3fHIfrgNNsRpzIXEi+0MQC0sR9xZNqZqCYVcC61fL5+Vg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer" />
 
   <style>
     /* Override styles to fix conflicts */

@@ -32,6 +32,36 @@ require_once 'includes/config.php';
   </section>
 
 
+  <!-- Donation Section Begin -->
+  <section class="donation-section section-padding bg-gray-50 py-16">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="section-tittle text-center mb-5">
+            <span>Support Our Cause</span>
+            <h2 class="custom-text">Make a Donation</h2>
+            <p class="mt-4">
+              Your generous donation helps us provide quality education, learning materials, and resources to underprivileged children.
+              No contribution is too small, and every amount makes a significant difference in a child's life.
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-md">
+            <div class="text-center">
+              <h3 class="text-2xl font-bold text-gray-800 mb-4">Official Bank Account Details</h3>
+              <div class="space-y-2">
+                <p class="text-lg font-semibold text-custom-blue">Account Number: <span class="text-gray-700">2046931212</span></p>
+                <p class="text-lg font-semibold text-custom-blue">Bank Name: <span class="text-gray-700">First Bank</span></p>
+                <p class="text-lg font-semibold text-custom-blue">Account Name: <span class="text-gray-700">Omotoyosi Elitefield Educational Foundation</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Donation Section End -->
+
+
   <!-- ================ contact section start ================= -->
   <section class="contact-section">
     <div class="container">
@@ -113,35 +143,6 @@ require_once 'includes/config.php';
     </div>
   </div>
   <!-- Map Section End -->
-
-  <!-- Donation Section Begin -->
-  <section class="donation-section section-padding bg-gray-50 py-16">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-          <div class="section-tittle text-center mb-5">
-            <span>Support Our Cause</span>
-            <h2 class="custom-text">Make a Donation</h2>
-            <p class="mt-4">
-              Your generous donation helps us provide quality education, learning materials, and resources to underprivileged children.
-              No contribution is too small, and every amount makes a significant difference in a child's life.
-            </p>
-          </div>
-          <div class="bg-white p-8 rounded-lg shadow-md">
-            <div class="text-center">
-              <h3 class="text-2xl font-bold text-gray-800 mb-4">Official Bank Account Details</h3>
-              <div class="space-y-2">
-                <p class="text-lg font-semibold text-custom-blue">Account Number: <span class="text-gray-700">2046931212</span></p>
-                <p class="text-lg font-semibold text-custom-blue">Bank Name: <span class="text-gray-700">First Bank</span></p>
-                <p class="text-lg font-semibold text-custom-blue">Account Name: <span class="text-gray-700">Omotoyosi Elitefield Educational Foundation</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Donation Section End -->
 </main>
 
 <?php include 'includes/footer.php'; ?>

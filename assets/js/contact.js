@@ -1,85 +1,98 @@
-$(document).ready(function(){
-    
-    (function($) {
-        "use strict";
+$(document).ready(function() {
+    "use strict";
 
-    
-    jQuery.validator.addMethod('answercheck', function (value, element) {
-        return this.optional(element) || /^\bcat\b$/.test(value)
-    }, "type the correct answer -_-");
-
-    // validate contactForm form
-    $(function() {
-        $('#contactForm').validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-                subject: {
-                    required: true,
-                    minlength: 4
-                },
-                number: {
-                    required: true,
-                    minlength: 5
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                message: {
-                    required: true,
-                    minlength: 20
-                }
+    // Configuration for the contact form validation
+    $('#contactForm').validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 2
             },
-            messages: {
-                name: {
-                    required: "come on, you have a name, don't you?",
-                    minlength: "your name must consist of at least 2 characters"
-                },
-                subject: {
-                    required: "come on, you have a subject, don't you?",
-                    minlength: "your subject must consist of at least 4 characters"
-                },
-                number: {
-                    required: "come on, you have a number, don't you?",
-                    minlength: "your Number must consist of at least 5 characters"
-                },
-                email: {
-                    required: "no email, no message"
-                },
-                message: {
-                    required: "um...yea, you have to write something to send this form.",
-                    minlength: "thats all? really?"
-                }
+            subject: {
+                required: true,
+                minlength: 4
             },
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    type:"POST",
-                    data: $(form).serialize(),
-                    url:"contact_process.php",
-                    success: function() {
-                        $('#contactForm :input').attr('disabled', 'disabled');
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $(this).find(':input').attr('disabled', 'disabled');
-                            $(this).find('label').css('cursor','default');
-                            $('#success').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#success').modal('show');
-                        })
-                    },
-                    error: function() {
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $('#error').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#error').modal('show');
-                        })
-                    }
-                })
+            number: {
+                required: true,
+                minlength: 5
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            message: {
+                required: true,
+                minlength: 20
             }
-        })
-    })
-        
- })(jQuery)
-})
+        },
+        messages: {
+            name: {
+                required: "Please enter your name",
+                minlength: "Your name must be at least 2 characters long"
+            },
+            subject: {
+                required: "Please provide a subject",
+                minlength: "Your subject must be at least 4 characters long"
+            },
+            number: {
+                required: "Please enter your phone number",
+                minlength: "Your phone number must be at least 5 digits"
+            },
+            email: {
+                required: "Email address is required",
+                email: "Please enter a valid email address"
+            },
+            message: {
+                required: "Please enter your message",
+                minlength: "Your message must be at least 20 characters long"
+            }
+        },
+        /**
+         * Handles the form submission after successful validation.
+         * @param {HTMLFormElement} form - The form element.
+         * @param {Event} event - The submit event.
+         */
+        submitHandler: function(form, event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const $form = $(form);
+            const $submitButton = $form.find('button[type="submit"]');
+
+            // Disable button to prevent multiple submissions and provide feedback
+            $submitButton.prop('disabled', true).text('Sending...');
+
+            $.ajax({
+                type: "POST",
+                url: "contact_process.php", // The URL to your processing script
+                data: $form.serialize()
+            })
+            .done(function(response) {
+                // On success, disable all form fields and show the success modal
+                $form.find(':input').prop('disabled', true);
+                $form.find('label').css('cursor', 'default');
+                $('#success').modal('show'); // Assumes you're using Bootstrap modals
+            })
+            .fail(function() {
+                // On error, show the error modal
+                $('#error').modal('show');
+            })
+            .always(function() {
+                // On failure, you might want to re-enable the button.
+                // For this example, if the request fails, the user can refresh.
+                // If you want them to be able to try again without a refresh:
+                // if (jqXHR.status !== 200) {
+                //   $submitButton.prop('disabled', false).text('Send Message');
+                // }
+            });
+        }
+    });
+
+    /* * The custom validation method 'answercheck' was removed because it was not
+     * being used in the validation rules. If you need it for a CAPTCHA-like
+     * field, you can add it back like this:
+     *
+     * jQuery.validator.addMethod('answercheck', function (value, element) {
+     * return this.optional(element) || /^\bcat\b$/i.test(value); // i for case-insensitive
+     * }, "Please type the correct answer.");
+    */
+});

@@ -5,7 +5,7 @@ $siteConfig = [
     'site_url' => 'https://omotoyosifoundation.com.ng',
     'site_description' => 'Providing underprivileged children with access to quality education',
     'contact_email' => 'info@omotoyosifoundation.com.ng',
-    'contact_phone' => '+234 808 117 3996',
+    'contact_phone' => 'Phone number: 09079895807 <br/> WhatsApp contact: 08081173996',
     'contact_address' => '23 Alabata Road, Abeokuta, Ogun State, Nigeria',
     'social_media' => [
         'twitter' => '#',
@@ -79,26 +79,6 @@ $teamMembers = [
         'social_media' => [
             ['platform' => 'instagram', 'url' => 'https://www.instagram.com/samuelhabilah', 'icon' => 'fab fa-instagram'],
             ['platform' => 'linkedin', 'url' => 'https://www.linkedin.com/in/habila-d-908060111', 'icon' => 'fab fa-linkedin']
-        ]
-    ],
-    [
-        'name' => 'Ale Oluwaseyi',
-        'position' => '',
-        'image' => './resources/HR.jpeg',
-        'alt' => '',
-        'social_media' => [
-            ['platform' => 'instagram', 'url' => 'https://www.instagram.com/oluwaseyi_ale', 'icon' => 'fab fa-instagram'],
-            ['platform' => 'linkedin', 'url' => 'https://www.linkedin.com/in/oluwaseyi-ale-786080123', 'icon' => 'fab fa-linkedin']
-        ]
-    ],
-    [
-        'name' => 'Tiyinloluwa Busola Ajala',
-        'position' => '',
-        'image' => './resources/Head of Communications.jpeg',
-        'alt' => '',
-        'social_media' => [
-            ['platform' => 'instagram', 'url' => 'https://www.instagram.com/_bussiegold', 'icon' => 'fab fa-instagram'],
-            ['platform' => 'linkedin', 'url' => 'https://www.linkedin.com/in/tiyinloluwa-ajala', 'icon' => 'fab fa-linkedin']
         ]
     ],
     [
