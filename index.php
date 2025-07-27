@@ -36,7 +36,7 @@ require_once 'includes/config.php';
                 <!-- Hero-btn -->
                 <div class="hero__btn">
                   <a href="contact.php" class="btn hero-btn mb-10 custom-button" data-animation="fadeInLeft" data-delay=".8s">Donate</a>
-                  <a href="tel:<?php echo $siteConfig['contact_phone']; ?>" class="cal-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">
+                  <a class="cal-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">
                     <i class="flaticon-null text-white"></i>
                     <p class="text-white"><?php echo $siteConfig['contact_phone']; ?></p>
                   </a>
