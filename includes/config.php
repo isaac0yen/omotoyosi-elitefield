@@ -8,10 +8,9 @@ $siteConfig = [
     'contact_phone' => 'Phone number: 09079895807 <br/> WhatsApp contact: 08081173996',
     'contact_address' => '23 Alabata Road, Abeokuta, Ogun State, Nigeria',
     'social_media' => [
-        'twitter' => '#',
-        'instagram' => '#',
-        'facebook' => '#',
-        'linkedin' => '#'
+        'twitter' => 'https://twitter.com/Elitefield_edu',
+        'instagram' => 'https://www.instagram.com/omotoyosi_elitefieldfoundation',
+        'linkedin' => 'https://www.linkedin.com/company/omotoyosi-elitefield-educational-foundation/'
     ]
 ];
 
