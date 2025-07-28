@@ -23,9 +23,6 @@
                                 <a href="<?php echo $siteConfig['social_media']['instagram']; ?>" class="hover:opacity-80 transition-opacity">
                                     <i class="fab fa-instagram text-xl p-3 rounded-full bg-[#E7782E] text-white hover:bg-opacity-90"></i>
                                 </a>
-                                <a href="<?php echo $siteConfig['social_media']['facebook']; ?>" class="hover:opacity-80 transition-opacity">
-                                    <i class="fab fa-facebook-f text-xl p-3 rounded-full bg-[#438EC6] text-white hover:bg-opacity-90"></i>
-                                </a>
                                 <a href="<?php echo $siteConfig['social_media']['linkedin']; ?>" class="hover:opacity-80 transition-opacity">
                                     <i class="fab fa-linkedin text-xl p-3 rounded-full bg-[#E7782E] text-white hover:bg-opacity-90"></i>
                                 </a>
