@@ -5,7 +5,8 @@ $siteConfig = [
     'site_url' => 'https://omotoyosifoundation.com.ng',
     'site_description' => 'Providing underprivileged children with access to quality education',
     'contact_email' => 'info@omotoyosifoundation.com.ng',
-    'contact_phone' => 'Phone number: 09079895807 <br/> WhatsApp contact: 08081173996',
+    'contact_phone' => '08081173996',
+    'contact_whatsapp' => '<a href="https://wa.me/2348081173996" class="text-green-600 hover:text-green-800 transition-colors duration-300">08081173996</a>',
     'contact_address' => '23 Alabata Road, Abeokuta, Ogun State, Nigeria',
     'social_media' => [
         'twitter' => 'https://twitter.com/Elitefield_edu',
@@ -15,12 +16,14 @@ $siteConfig = [
 ];
 
 // Function to get active class for navigation
-function isActive($pageName, $currentPage) {
+function isActive($pageName, $currentPage)
+{
     return $pageName === $currentPage ? 'active' : '';
 }
 
 // Function to load blog posts from JSON
-function loadBlogPosts() {
+function loadBlogPosts()
+{
     $jsonFile = __DIR__ . '/../blog-posts.json';
     if (file_exists($jsonFile)) {
         $jsonData = file_get_contents($jsonFile);
@@ -30,7 +33,8 @@ function loadBlogPosts() {
 }
 
 // Function to get blog post by slug
-function getBlogPostBySlug($slug) {
+function getBlogPostBySlug($slug)
+{
     $posts = loadBlogPosts();
     if ($posts && isset($posts['posts'])) {
         foreach ($posts['posts'] as $post) {
@@ -43,7 +47,8 @@ function getBlogPostBySlug($slug) {
 }
 
 // Function to get recent blog posts
-function getRecentBlogPosts($limit = 3) {
+function getRecentBlogPosts($limit = 3)
+{
     $posts = loadBlogPosts();
     if ($posts && isset($posts['posts'])) {
         return array_slice($posts['posts'], 0, $limit);
@@ -52,7 +57,8 @@ function getRecentBlogPosts($limit = 3) {
 }
 
 // Base URL function to handle subdirectories
-function baseUrl($path = '') {
+function baseUrl($path = '')
+{
     $basePath = '';
     return $basePath . $path;
 }
@@ -112,4 +118,3 @@ $teamMembers = [
         'social_media' => []
     ]
 ];
-?>

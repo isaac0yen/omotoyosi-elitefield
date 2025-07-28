@@ -52,7 +52,7 @@
                         </div>
                         <div class="footer-cap">
                             <p><i class="fas fa-map-marker-alt" style="color: rgb(231, 120, 46);"></i> <?php echo $siteConfig['contact_address']; ?></p>
-                            <p><i class="fas fa-phone" style="color: rgb(67, 142, 198);"></i> <?php echo $siteConfig['contact_phone']; ?></p>
+                            <p><i class="fas fa-phone" style="color: rgb(67, 142, 198);"></i> Whatsapp <?php echo $siteConfig['contact_whatsapp']; ?></p>
                             <p><i class="fas fa-envelope" style="color: rgb(231, 120, 46);"></i> <a class="text-black" href="mailto:<?php echo $siteConfig['contact_email']; ?>"><?php echo $siteConfig['contact_email']; ?></a></p>
                         </div>
                     </div>
