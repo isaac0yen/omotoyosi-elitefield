@@ -7,7 +7,7 @@ $siteConfig = [
     'contact_email' => 'info@omotoyosifoundation.com.ng',
     'contact_phone' => '08081173996',
     'contact_whatsapp' => '<a href="https://wa.me/2348081173996" class="text-green-600 hover:text-green-800 transition-colors duration-300">08081173996</a>',
-    'contact_address' => '23 Alabata Road, Abeokuta, Ogun State, Nigeria',
+    'contact_address' => 'Alabata Road, Abeokuta, Ogun State, Nigeria',
     'social_media' => [
         'twitter' => 'https://twitter.com/Elitefield_edu',
         'instagram' => 'https://www.instagram.com/omotoyosi_elitefieldfoundation',
