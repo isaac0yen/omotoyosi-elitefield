@@ -85,10 +85,18 @@ $pageSpecificScripts = '';
                 <div class="flex justify-between items-center">
                     <h4 class="text-sm font-bold text-gray-500 uppercase">Share this post</h4>
                     <div class="flex space-x-2">
-                        <a href="#" aria-label="Share on Facebook" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-blue-600 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Share on Twitter" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-sky-500 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Share on Instagram" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-pink-500 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Share on LinkedIn" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-blue-700 hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <?php
+                        // Define function to get current URL if it doesn't exist
+                        function getCurrentPageUrl() {
+                            $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+                            return $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+                        }
+                        $currentUrl = getCurrentPageUrl();
+                        ?>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($currentUrl); ?>" target="_blank" aria-label="Share on Facebook" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-blue-600 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode($currentUrl); ?>&text=<?php echo urlencode($post['title']); ?>" target="_blank" aria-label="Share on Twitter" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-sky-500 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" aria-label="Share on Instagram" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-pink-500 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo urlencode($currentUrl); ?>" target="_blank" aria-label="Share on LinkedIn" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-blue-700 hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </footer>
