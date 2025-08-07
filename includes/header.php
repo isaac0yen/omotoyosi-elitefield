@@ -7,6 +7,46 @@
   <title><?php echo isset($pageTitle) ? $pageTitle : 'Omotoyosi Elitefield Educational Foundation'; ?></title>
   <meta name="description" content="<?php echo isset($pageDescription) ? $pageDescription : 'Omotoyosi Elitefield Educational Foundation - Providing underprivileged children with access to quality education'; ?>" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- SEO Meta Tags -->
+  <meta name="keywords" content="<?php echo isset($pageKeywords) ? $pageKeywords : 'education, foundation, Nigeria, underprivileged children, Alabata, Abeokuta, Ogun State'; ?>" />
+  <meta name="author" content="<?php echo isset($pageAuthor) ? $pageAuthor : 'Omotoyosi Elitefield Educational Foundation'; ?>" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="<?php echo isset($canonicalUrl) ? $canonicalUrl : (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="<?php echo isset($pageTitle) ? $pageTitle : 'Omotoyosi Elitefield Educational Foundation'; ?>" />
+  <meta property="og:description" content="<?php echo isset($pageDescription) ? $pageDescription : 'Omotoyosi Elitefield Educational Foundation - Providing underprivileged children with access to quality education'; ?>" />
+  <meta property="og:image" content="<?php echo isset($pageImage) ? $pageImage : (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/resources/logo_white.jpg'; ?>" />
+  <meta property="og:url" content="<?php echo isset($canonicalUrl) ? $canonicalUrl : (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
+  <meta property="og:type" content="<?php echo isset($ogType) ? $ogType : 'website'; ?>" />
+  <meta property="og:site_name" content="Omotoyosi Elitefield Educational Foundation" />
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="<?php echo isset($pageTitle) ? $pageTitle : 'Omotoyosi Elitefield Educational Foundation'; ?>" />
+  <meta name="twitter:description" content="<?php echo isset($pageDescription) ? $pageDescription : 'Omotoyosi Elitefield Educational Foundation - Providing underprivileged children with access to quality education'; ?>" />
+  <meta name="twitter:image" content="<?php echo isset($pageImage) ? $pageImage : (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/resources/logo_white.jpg'; ?>" />
+  <meta name="twitter:site" content="@Elitefield_edu" />
+  
+  <!-- Article specific meta tags (for blog posts) -->
+  <?php if (isset($ogType) && $ogType === 'article'): ?>
+  <meta property="article:author" content="<?php echo isset($pageAuthor) ? $pageAuthor : 'Omotoyosi Elitefield Educational Foundation'; ?>" />
+  <meta property="article:published_time" content="<?php echo isset($publishedTime) ? $publishedTime : ''; ?>" />
+  <meta property="article:section" content="<?php echo isset($articleSection) ? $articleSection : 'Education'; ?>" />
+  <?php if (isset($articleTags) && is_array($articleTags)): ?>
+    <?php foreach ($articleTags as $tag): ?>
+  <meta property="article:tag" content="<?php echo htmlspecialchars($tag); ?>" />
+    <?php endforeach; ?>
+  <?php endif; ?>
+  <?php endif; ?>
+  
+  <!-- JSON-LD Structured Data -->
+  <?php if (isset($structuredData)): ?>
+  <script type="application/ld+json">
+  <?php echo $structuredData; ?>
+  </script>
+  <?php endif; ?>
   <link rel="manifest" href="site.webmanifest" />
   <link rel="shortcut icon" type="image/x-icon" href="./resources/logo_white.jpg" />
 

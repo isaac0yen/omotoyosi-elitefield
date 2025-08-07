@@ -543,7 +543,7 @@ require_once 'includes/config.php';
             <div class="mb-8">
               <div class="relative">
                 <div class="overflow-hidden rounded-lg">
-                  <img src="<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>" class="w-full h-auto" />
+                  <img src="<?php echo $post['image']; ?>" alt="<?php echo htmlspecialchars($post['title']); ?>" class="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-300 hover:scale-105" loading="lazy" />
                   <!-- Blog date -->
                   <div class="absolute top-4 left-4 bg-white px-3 py-2 rounded-lg text-center">
                     <span class="block text-xl font-bold"><?php echo $day; ?></span>
